@@ -1,55 +1,16 @@
-import {
-  Link,
-  Outlet,
-  createBrowserRouter,
-  RouterProvider,
-} from 'react-router-dom';
-
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Home';
-import About from './About';
+import ProductDetails from './ProductDetails';
 
-const Navbar = () => {
+const App = () => {
   return (
-    <div>
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products/:productId" element={<ProductDetails />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
-
-const HeaderLayout = () => (
-  <>
-    <header>
-      <Navbar />
-    </header>
-    <Outlet />
-  </>
-);
-
-// define routes
-const router = createBrowserRouter([
-  {
-    element: <HeaderLayout />,
-    children: [
-      {
-        path: '/',
-        element: <Home />,
-      },
-      {
-        path: '/about',
-        element: <About />,
-      },
-    ],
-  },
-]);
-
-function App() {
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  );
-}
 
 export default App;

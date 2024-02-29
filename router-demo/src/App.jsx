@@ -1,29 +1,48 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
-import Home from './Home';
-import About from './About';
-import Products from './pages/products/Products';
-import ProductDetails from './pages/products/ProductDetails';
-import ProductLayout from './components/ProductLayout';
+import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
-const App = () => {
+// search bar -
+function SearchBar() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    setSearchParams({ search: searchTerm });
+  };
+
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-
-            <Route path="/products" element={<ProductLayout />}>
-              <Route path="list" element={<Products />} />
-              <Route path="details" element={<ProductDetails />} />
-            </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </>
+    <form onSubmit={handleSearch}>
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <button type="submit">Search</button>
+    </form>
   );
-};
+}
+
+// search result -
+function SearchResults() {
+  const [searchParams] = useSearchParams();
+  const searchTerm = searchParams.get('search');
+
+  return (
+    <div>
+      <h2>Search Results</h2>
+      {searchTerm && <p>Your search term: {searchTerm}</p>}
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <SearchBar />
+      <SearchResults />
+    </div>
+  );
+}
 
 export default App;

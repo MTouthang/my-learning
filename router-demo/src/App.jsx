@@ -1,42 +1,48 @@
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useRouteError,
+} from 'react-router-dom';
 
-function Dashboard() {
-  const navigate = useNavigate();
-  const handleGoToAbout = () => {
-    navigate('/other-page'); // Navigate to the "/about" route
-  };
-
+function ErrorPage() {
+  const error = useRouteError();
   return (
     <div>
-      <h1>Welcome to Dashboard!</h1>
-      <button onClick={handleGoToAbout}> Go to other page </button>
+      <p style={{ color: 'red', fontSize: '30px' }}>
+        {error.status == '404' ? '404 Page Not Found' : ''}
+      </p>
     </div>
   );
 }
 
-function OtherPage() {
-  const navigate = useNavigate();
-
-  const handleGoBack = () => {
-    navigate(-1); // Navigate one step back in history
-  };
+function Home() {
   return (
-    <>
-      <p> Other page</p>
-      <button onClick={handleGoBack}>Go Back</button>
-    </>
+    <div>
+      <p>Home </p>
+    </div>
   );
 }
+function Blog() {
+  return (
+    <div>
+      <p>Blog page </p>
+    </div>
+  );
+}
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/blog',
+    element: <Blog />,
+  },
+]);
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/other-page" element={<OtherPage />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 }
-
 export default App;

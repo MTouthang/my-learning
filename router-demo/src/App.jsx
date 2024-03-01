@@ -1,47 +1,36 @@
-import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
-// search bar -
-function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [searchParams, setSearchParams] = useSearchParams();
+function Home() {
+  const navigate = useNavigate();
 
-  const handleSearch = (event) => {
-    event.preventDefault();
-    setSearchParams({ search: searchTerm });
+  const handleGoToAbout = () => {
+    navigate('/about'); // Navigate to the "/about" route
   };
 
   return (
-    <form onSubmit={handleSearch}>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <button type="submit">Search</button>
-    </form>
+    <div>
+      <h1>Welcome to Home!</h1>
+      <button onClick={handleGoToAbout}>Go to About Us</button>
+    </div>
   );
 }
 
-// search result -
-function SearchResults() {
-  const [searchParams] = useSearchParams();
-  const searchTerm = searchParams.get('search');
-
+function About() {
   return (
     <div>
-      <h2>Search Results</h2>
-      {searchTerm && <p>Your search term: {searchTerm}</p>}
+      <h1>About Us</h1>
     </div>
   );
 }
 
 function App() {
   return (
-    <div>
-      <SearchBar />
-      <SearchResults />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

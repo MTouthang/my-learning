@@ -1,25 +1,30 @@
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
-function Home() {
+function Dashboard() {
   const navigate = useNavigate();
-
   const handleGoToAbout = () => {
-    navigate('/about'); // Navigate to the "/about" route
+    navigate('/other-page'); // Navigate to the "/about" route
   };
 
   return (
     <div>
-      <h1>Welcome to Home!</h1>
-      <button onClick={handleGoToAbout}>Go to About Us</button>
+      <h1>Welcome to Dashboard!</h1>
+      <button onClick={handleGoToAbout}> Go to other page </button>
     </div>
   );
 }
 
-function About() {
+function OtherPage() {
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate(-1); // Navigate one step back in history
+  };
   return (
-    <div>
-      <h1>About Us</h1>
-    </div>
+    <>
+      <p> Other page</p>
+      <button onClick={handleGoBack}>Go Back</button>
+    </>
   );
 }
 
@@ -27,8 +32,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/other-page" element={<OtherPage />} />
       </Routes>
     </BrowserRouter>
   );

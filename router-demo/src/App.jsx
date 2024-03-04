@@ -1,48 +1,23 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  useRouteError,
-} from 'react-router-dom';
-
-function ErrorPage() {
-  const error = useRouteError();
-  return (
-    <div>
-      <p style={{ color: 'red', fontSize: '30px' }}>
-        {error.status == '404' ? '404 Page Not Found' : ''}
-      </p>
-    </div>
-  );
-}
-
-function Home() {
-  return (
-    <div>
-      <p>Home </p>
-    </div>
-  );
-}
-function Blog() {
-  return (
-    <div>
-      <p>Blog page </p>
-    </div>
-  );
-}
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Home />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/blog',
-    element: <Blog />,
-  },
-]);
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Products from './pages/Products';
+import Login from './pages/Login';
+import PrivateRoutes from './utils/PrivateRoutes';
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <div>
+      <Router>
+        <Routes>
+          <Route element={<PrivateRoutes />}>
+            <Route element={<Home />} path="/" exact />
+            <Route element={<Products />} path="/products" />
+          </Route>
+          <Route element={<Login />} path="/login" />
+        </Routes>
+      </Router>
+    </div>
+  );
 }
+
 export default App;

@@ -26,20 +26,8 @@ export const todoApi = createApi({
       }),
       invalidatesTags: ['Todos'],
     }),
-    deleteTodo: builder.mutation({
-      query: ({ id }) => ({
-        url: `/todos/${id}`,
-        method: 'DELETE',
-        body: id,
-      }),
-      invalidatesTags: ['Todos'],
-    }),
   }),
 });
 
-export const {
-  useGetTodosQuery,
-  useAddTodoMutation,
-  useToggleTodoMutation,
-  useDeleteTodoMutation,
-} = todoApi;
+export const { useGetTodosQuery, useAddTodoMutation, useToggleTodoMutation } =
+  todoApi;

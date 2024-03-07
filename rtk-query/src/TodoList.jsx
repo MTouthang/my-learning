@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import {
   useAddTodoMutation,
-  useDeleteTodoMutation,
   useGetTodosQuery,
   useToggleTodoMutation,
 } from './api';
@@ -12,7 +11,6 @@ const TodoList = () => {
   const [newTodo, setNewTodo] = useState('');
   const [addTodo] = useAddTodoMutation();
   const [toggleTodo] = useToggleTodoMutation();
-  const [deleteTodo] = useDeleteTodoMutation();
 
   const handleAddTodo = async (e) => {
     e.preventDefault();
@@ -30,14 +28,6 @@ const TodoList = () => {
       await toggleTodo({ id, completed: !completed });
     } catch (error) {
       console.error('Failed to toggle todo:', error);
-    }
-  };
-
-  const handleDeleteTodo = async (id) => {
-    try {
-      await deleteTodo(id);
-    } catch (error) {
-      console.error('Failed to delete todo:', error);
     }
   };
 
@@ -67,7 +57,6 @@ const TodoList = () => {
             <span onClick={() => handleToggleTodo(todo.id, todo.completed)}>
               {todo.title}
             </span>
-            <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
           </li>
         ))}
       </ul>

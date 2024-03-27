@@ -3,13 +3,13 @@ import { FaStar } from 'react-icons/fa';
 import './style.css';
 
 const StartRating = ({ noOfStars = 5 }) => {
-  const [rating, setRating] = useState(0);
-  const [hover, setHover] = useState(0);
+  const [rating, setRating] = useState<number>(0);
+  const [hover, setHover] = useState<number>(0);
 
-  const handleClick = (getCurrentIndex) => {
+  const handleClick = (getCurrentIndex: number) => {
     setRating(getCurrentIndex);
   };
-  const handleMouseEnter = (getCurrentIndex) => {
+  const handleMouseEnter = (getCurrentIndex: number) => {
     setHover(getCurrentIndex);
   };
   const handleMouseLeave = () => {

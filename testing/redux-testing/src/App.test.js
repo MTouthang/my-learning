@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders Counter component wrapped with Provider', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const counterElement = screen.getByText(/Counter/i);
+  expect(counterElement).toBeInTheDocument();
 });

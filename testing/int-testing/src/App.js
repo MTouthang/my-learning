@@ -1,8 +1,9 @@
 import React from 'react';
-import ProductListing from './component/ProductListing';
+
+import User from './component/User';
 
 const App = () => {
-  return <ProductListing />;
+  return <User/>;
 };
 
 export default App;

@@ -38,16 +38,23 @@ const ARR = [2, 8, 4, 5, 6];
  *    -
  */
 
-for (let i = 0; i < ARR.length - 1; i++) {
-  for (let j = i + 1; j < ARR.length; j++) {
-    if (ARR[i] > ARR[j]) {
-      // swap
-      //   let temp = ARR[i];
-      //   ARR[i] = ARR[j];
-      //   ARR[j] = temp;
-      [ARR[i], ARR[j]] = [ARR[j], ARR[i]];
+const secondLargest = (ARR) => {
+  if (ARR.length > 2) {
+    for (let i = 0; i < ARR.length - 1; i++) {
+      for (let j = i + 1; j < ARR.length; j++) {
+        if (ARR[i] > ARR[j]) {
+          // swap
+          //   let temp = ARR[i];
+          //   ARR[i] = ARR[j];
+          //   ARR[j] = temp;
+          [ARR[i], ARR[j]] = [ARR[j], ARR[i]];
+        }
+      }
     }
+    return ARR[ARR.length - 2];
   }
-}
 
-console.log(ARR);
+  return -1;
+};
+
+console.log(secondLargest(ARR));

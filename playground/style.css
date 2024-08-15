@@ -1,0 +1,12 @@
+.a {
+ text-decoration: none;
+}
+.b {
+  text-decoration: underline dashed;
+}
+.c {
+  text-decoration: underline dotted;
+}
+.d{
+  text-decoration: line-through;
+}

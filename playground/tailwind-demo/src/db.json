@@ -1,0 +1,34 @@
+{
+  "todos": [
+    {
+      "id": "8579",
+      "userId": 1,
+      "title": "Fix the bud",
+      "completed": true
+    },
+    {
+      "id": "6d97",
+      "userId": 1,
+      "title": "Make coffee",
+      "completed": true
+    },
+    {
+      "id": "e8f8",
+      "userId": 1,
+      "title": "Assign task",
+      "completed": true
+    },
+    {
+      "id": "f0eb",
+      "userId": 1,
+      "title": "hello world",
+      "completed": true
+    },
+    {
+      "id": "9da4",
+      "userId": 1,
+      "title": "hi",
+      "completed": true
+    }
+  ]
+}
